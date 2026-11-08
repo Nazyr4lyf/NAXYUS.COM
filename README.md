@@ -1,13 +1,18 @@
 # NAXYUS PRO MAX v2.5.0
 
-The NAXYUS PRO MAX replacement site is being integrated into this repository on the `pro-max-integration` branch. The existing `main` branch and live deployment remain unchanged until validation and approval.
+The NAXYUS PRO MAX replacement is being integrated in this repository on `pro-max-integration`. The original HTML pages and brand assets are retained. The production `main` branch remains unchanged until the release gate passes and the preview is reviewed.
 
 ## Stack
 - Next.js App Router, React and TypeScript
-- Responsive dark NAXYUS identity: blue `#155EEF`, cyan `#00D9FF`, violet `#5B1FEF`
-- Native WebGL hero with CSS fallback and reduced-motion safeguards
-- SEO metadata, sitemap, robots, JSON-LD and installability manifest
-- Contact form validation, honeypot and same-origin checks; optional Resend delivery
+- Responsive NAXYUS identity: blue `#155EEF`, cyan `#00D9FF`, violet `#5B1FEF`
+- Native WebGL hero with CSS fallback and a reduced-motion-friendly static render
+- SEO metadata, dynamic project detail pages, sitemap, robots and installability manifest
+- Contact validation, honeypot and same-origin checks; optional Resend delivery
+
+## Portfolio
+The directory currently presents 16 project directions discovered from the existing portfolio and accessible GitHub repositories: VoteChain, WardPlus (formerly WardPulse), PharmaShield, SafeLoop, School Management System, A.K.A ANNUR Hospital Management System, Hotel Management System, Rabiyul Auwal, BAUCHI Maulud Distribution Hub, DORTIXP, LINGORA, MATAWALLEE KIDS COLLECTIONS, Nazeer AI Studio, VisionTrade AI Assistant, SHA’IRAN ANNABI Membership System and DARHAM Bread Bakery.
+
+Descriptions distinguish repository-backed work from concepts and frontend foundations. Portfolio inclusion does not imply that a product is deployed, certified or production-ready.
 
 ## Local setup
 Requires Node.js 22.6+ and npm.
@@ -29,16 +34,13 @@ npm run typecheck
 npm run build
 ```
 
-The full release gate is `npm run check`. Do not publish until all checks pass and desktop/mobile, accessibility, WebGL fallback, contact email delivery and Vercel preview are verified.
+The release gate is `npm run check`. GitHub Actions runs this gate on pushes to `main` and `pro-max-integration`, and on pull requests to `main`.
 
 ## Contact configuration
-Set `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`, and `NEXT_PUBLIC_SITE_URL` in the deployment environment. Never commit real secrets or expose private keys via `NEXT_PUBLIC_` variables.
+Set `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL` and `NEXT_PUBLIC_SITE_URL` in Vercel or local environment settings. Never commit real secrets or expose private keys via `NEXT_PUBLIC_` variables. The contact route requires a verified sender domain in Resend. A shared production rate limiter/WAF should be configured before public launch.
 
 ## Release status
-The project source has passed source-level verification and its dependency-free automated tests in the build workspace. A complete Next.js production build and real-device QA have not yet been confirmed. The contact endpoint's in-memory limiter is not a substitute for a shared production rate limiter/WAF.
-
-## Product status
-The portfolio includes 13 project directions. Descriptions must remain honest: inclusion in the portfolio does not imply that every product is deployed, certified or production-ready.
+The initial Next.js production build succeeded and exposed an ESLint configuration issue; that configuration has been corrected and the CI gate is running. Desktop/mobile QA, accessibility review, live contact delivery, WebGL fallback testing and final preview review remain release requirements.
 
 ## Integration safety
-All work is being staged on `pro-max-integration`. Do not merge to `main` or change the live deployment until the integrated repository has passed its release gate and the owner has reviewed the preview.
+Keep work on `pro-max-integration` until CI passes, the Vercel preview is reviewed and the owner approves merging to `main`. Do not replace the production site before those gates pass.
